@@ -4,7 +4,7 @@ import ChatsTimeline from '../ChatsTimeline'
 import './Style.scss'
 
 export default () =>
-  <div class="container">
+  <div class="MainContainer">
     <header>
       <AppBar />
     </header>

@@ -1,5 +1,5 @@
 .AppBar {
-  position: fixed;
+  position: static!important;
 
   &-search {
     width: 100%;

@@ -1,4 +1,6 @@
 .AppBar {
+  position: fixed;
+
   &-search {
     width: 100%;
     position: relative;
@@ -10,8 +12,13 @@
     }
   }
 
+  &-addButton {
+    margin-left: 15px!important;
+  }
+
   &-toolbar {
     min-height: 75px!important;
+    display: flex;
   }
 
   &-input {

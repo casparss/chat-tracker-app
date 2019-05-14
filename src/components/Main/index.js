@@ -1,13 +1,11 @@
-import React from 'react';
+import React from 'react'
 import AppBar from '../AppBar'
 import ChatsTimeline from '../ChatsTimeline'
 import './Style.scss'
 
 export default () =>
   <div class="MainContainer">
-    <header>
-      <AppBar />
-    </header>
+    <AppBar />
     <main>
       <ChatsTimeline />
     </main>

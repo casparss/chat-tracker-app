@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@capacitor/android": "^1.0.0-beta.24",
+    "@capacitor/cli": "^1.0.0-beta.24",
+    "@capacitor/core": "^1.0.0-beta.24",
+    "@capacitor/ios": "^1.0.0-beta.24",
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
     "node-sass": "^4.12.0",

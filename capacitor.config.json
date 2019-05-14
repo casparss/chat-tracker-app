@@ -1,0 +1,7 @@
+{
+  "appId": "com.chattracker.app",
+  "appName": "Chat tracker",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build"
+}

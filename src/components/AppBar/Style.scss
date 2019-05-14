@@ -1,0 +1,35 @@
+.AppBar {
+  &-search {
+    width: 100%;
+    position: relative;
+    margin-left: 0;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.15);
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+  }
+
+  &-toolbar {
+    min-height: 75px!important;
+  }
+
+  &-input {
+    width: 100%;
+    & > input {
+      padding-left: 20%;
+      color: #ffffff;
+      height: 30px!important;
+    }
+  }
+
+  &-searchIcon {
+    width: 72px;
+    height: 100%;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    pointer-events: none;
+    justify-content: center;
+  }
+}

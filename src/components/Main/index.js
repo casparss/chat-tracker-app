@@ -1,6 +1,6 @@
 import React from 'react';
 import AppBar from '../AppBar'
-import ConversationHistory from '../ConversationHistory'
+import ChatsTimeline from '../ChatsTimeline'
 import './Style.scss'
 
 export default () =>
@@ -9,6 +9,6 @@ export default () =>
       <AppBar />
     </header>
     <main>
-      <ConversationHistory />
+      <ChatsTimeline />
     </main>
   </div>

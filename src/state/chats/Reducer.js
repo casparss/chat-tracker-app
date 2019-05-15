@@ -1,7 +1,13 @@
 import { createReducer } from 'reduxsauce'
 import { Types } from './Types'
 
+export const initialFetchState = {
+  isFetching: false,
+  isFetchSuccess: null
+}
+
 export const initialState = {
+  ...initialFetchState,
   chatList: [{
       id: 0,
       title: 'Another note',
@@ -59,10 +65,25 @@ const newChatItem = title => ({
 })
 
 export const Handlers = {
-  [Types.CREATE_NEW_CHAT]: (state, { title }) => ({
+  [Types.CREATE_NEW_CHAT_ATTEMPT]: (state, { title }) => ({
     ...state,
-    chatList: [newChatItem(title), ...state.chatList]
+    chatList: [newChatItem(title), ...state.chatList],
+    isFetching: true
   }),
+  [Types.CREATE_NEW_CHAT_FAILED]: (state, payload) => ({
+    ...state,
+    isFetching: false
+  }),
+  [Types.CREATE_NEW_CHAT_SUCCESS]: (state, { title }) => ({
+    ...state,
+    chatList: [newChatItem(title), ...state.chatList],
+    isFetching: false,
+    isFetchSuccess: true
+  }),
+  [Types.RESET_UI]: state => ({
+    ...state,
+    ...initialFetchState
+  })
 }
 
 export const reducer = createReducer(initialState, Handlers)

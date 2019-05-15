@@ -2,11 +2,9 @@ import { connect } from 'react-redux'
 import Component from './Component'
 import { Creators } from '../../state/Chats'
 
-const mapDispatchToProps = {
-  createNewChat: Creators.createNewChat
-}
+const mapDispatchToProps = Creators
 
 export default connect(
-  undefined,
+  ({ chats }) => chats,
   mapDispatchToProps
 )(Component)

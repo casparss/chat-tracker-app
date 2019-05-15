@@ -1,5 +1,8 @@
 import { createActions } from 'reduxsauce'
 
 export const { Types, Creators } = createActions({
-  createNewChat: ['title']
+  createNewChatAttempt: ['title'],
+  createNewChatSuccess: ['newChat'],
+  createNewChatFailed: { message: null, err: null },
+  resetUI: null
 }, { prefix: 'CHATS_' })

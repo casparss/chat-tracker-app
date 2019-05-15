@@ -6,18 +6,22 @@ import Avatar from '@material-ui/core/Avatar'
 import Chip from '@material-ui/core/Chip'
 import './Style.scss'
 
-export default ({ items = [] }) =>
-  <div className="ChatsTimeline">
-    <List>
-      {items.map((props) => <TimelineItem {...props} />)}
-    </List>
-  </div>
+export default ({ chatList = [] }) => {
+  return (
+    <div className="ChatsTimeline">
+      <List>
+        {chatList.map((props, i) => <TimelineItem key={i} {...props} />)}
+      </List>
+    </div>
+  )
+}
 
 const TimelineItem = ({
     title,
     subject,
     body,
-    people
+    people,
+    tags
   }) =>
     <ListItem className="TimelineItem" alignItems="flex-start">
       <div className="TimelineItem-body">
@@ -25,20 +29,17 @@ const TimelineItem = ({
           primary={title}
           secondary={body}
         />
-        <div className="TimelineItem-peopleList">
-          <Avatar>H</Avatar>
-          <Avatar>N</Avatar>
-          <Avatar>OP</Avatar>
-        </div>
-        <div className="TimelineItem-chipList">
-          <Chip
-            label="Brexit"
-            onDelete={() => {}}
-          />
-          <Chip
-            label="News"
-            onDelete={() => {}}
-          />
-        </div>
+        {people && <PeopleList people={people} />}
+        {tags && <TagsList tags={tags} />}
       </div>
     </ListItem>
+
+const PeopleList = ({ people }) =>
+  <div className="TimelineItem-peopleList">
+    {people.map((initials, i) => <Avatar key={i}>{initials}</Avatar>)}
+  </div>
+
+const TagsList = ({ tags }) =>
+  <div className="TimelineItem-chipList">
+    {tags.map((tagName, i) => <Chip key={i} label={tagName} onDelete={() => {}} />)}
+  </div>

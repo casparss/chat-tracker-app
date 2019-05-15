@@ -1,4 +1,4 @@
-import { select, call, put, takeLatest } from 'redux-saga/effects'
+/*import { select, call, put, takeLatest } from 'redux-saga/effects'
 import { Types as UserTypes } from '../User'
 import { Types, Creators } from './Types'
 import Api from '../../services/Api'
@@ -77,4 +77,4 @@ export function * saga () {
   yield takeLatest(Types.GET_GAMES_ATTEMPT, getGames)
   yield takeLatest(Types.SET_STATUS_FILTER, setStatusFilter)
   yield takeLatest(UserTypes.LOGIN_SUCCESS, onLoginSuccess)
-}
+}*/

@@ -1,2 +1,2 @@
-import Container from './Container'
-export default Container
+import Component from './Component'
+export default Component

@@ -3,10 +3,7 @@ import InputBase from '@material-ui/core/InputBase'
 import ChatIcon from '@material-ui/icons/ChatBubble'
 import Toolbar from '@material-ui/core/Toolbar'
 import FabButton from '../FabButton'
-import {
-  Plugins,
-  HapticsImpactStyle
-} from '@capacitor/core';
+import { Plugins, HapticsImpactStyle } from '@capacitor/core'
 import './Style.scss'
 const { Haptics } = Plugins;
 
@@ -41,7 +38,10 @@ export default class AddChatToolbar extends Component {
     this.clearInput()
   }
 
-  updateInput = (e) => this.setState({ chatTitle: e.target.value })
+  updateInput = (e) => {
+    this.setState({ chatTitle: e.target.value })
+    Haptics.impact({ style: HapticsImpactStyle.Medium })
+  }
 
   clearInput = () => this.setState({ chatTitle: '' })
 }

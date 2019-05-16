@@ -1,6 +1,7 @@
 import React from 'react'
 import AppBar from '../AppBar'
 import ChatsTimeline from '../ChatsTimeline'
+import Nav from '../Nav'
 import './Style.scss'
 
 export default () =>
@@ -9,4 +10,5 @@ export default () =>
     <main>
       <ChatsTimeline />
     </main>
+    <Nav />
   </div>

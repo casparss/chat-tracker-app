@@ -4,6 +4,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import Avatar from '@material-ui/core/Avatar'
 import Chip from '@material-ui/core/Chip'
+import moment from 'moment'
 import './Style.scss'
 
 export default ({ chatList = [] }) => {
@@ -16,14 +17,22 @@ export default ({ chatList = [] }) => {
   )
 }
 
+const DateItem = ({ date }) => (
+  <div className="TimelineItem-date">
+    <p>{moment(date, "YYYYMMDD").startOf('minute').fromNow()}</p>
+  </div>
+)
+
 const TimelineItem = ({
     title,
     subject,
     body,
     people,
-    tags
+    tags,
+    date
   }) =>
     <ListItem className="TimelineItem" alignItems="flex-start">
+      <DateItem date={date} />
       <div className="TimelineItem-body">
         <ListItemText
           primary={title}

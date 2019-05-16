@@ -1,5 +1,6 @@
 import { createReducer } from 'reduxsauce'
 import { Types } from './Types'
+import moment from 'moment'
 
 export const initialFetchState = {
   isFetching: false,
@@ -13,7 +14,8 @@ export const initialState = {
       title: 'Another note',
       subject: 'Something',
       body: 'Hello there I am some text, Hello there I am some text',
-      people: ['H', 'CS', 'BR']
+      people: ['H', 'CS', 'BR'],
+      date: moment().subtract(30, 'minutes')
     },
     {
       id: 1,
@@ -21,7 +23,8 @@ export const initialState = {
       subject: 'subject',
       body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse porta ipsum nisi. Phasellus mi erat, molestie id risus quis, dapibus elementum neque. Praesent id condimentum dui.',
       people: ['BR'],
-      tags: ['Brexit', 'News', 'Whatever']
+      tags: ['Brexit', 'News', 'Whatever'],
+      date: moment().subtract(50, 'minutes')
     },
     {
       id: 2,
@@ -29,14 +32,16 @@ export const initialState = {
       subject: 'Qwerty',
       body: 'Hello there I am some text, Hello there I am some text',
       people: ['JS'],
-      tags: ['Amsterdam']
+      tags: ['Amsterdam'],
+      date: moment().subtract(3, 'day')
     },
     {
       id: 3,
       title: 'Vibes on the canals',
       subject: 'Something',
       body: 'Hello there I am some text, Hello there I am some text',
-      tags: ['Brexit', 'News', 'Whatever', 'Lorem', 'Ipsum', 'People']
+      tags: ['Brexit', 'News', 'Whatever', 'Lorem', 'Ipsum', 'People'],
+      date: moment().subtract(4, 'day')
       },
     {
       id: 4,
@@ -44,14 +49,16 @@ export const initialState = {
       subject: 'Not necessary',
       body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse porta ipsum nisi. Phasellus mi erat, molestie id risus quis, dapibus elementum neque. Praesent id condimentum dui. Suspendisse auctor ante at consequat aliquet. Vivamus porta condimentum est in interdum. Phasellus feugiat gravida interdum. Aenean mi orci, vestibulum eu ultrices nec, placerat sit amet neque. Fusce volutpat urna at ipsum egestas pellentesque. Aenean tempus sodales ornare.',
       people: ['GO'],
-      tags: ['one']
+      tags: ['one'],
+      date: moment().subtract(20, 'day')
     },
     {
       id: 5,
       title: 'Bla bla bla',
       subject: 'Qwerty',
       body: 'interdum. Aenean mi orci, vestibulum eu ultrices nec, placerat sit amet neque. Fusce volutpat urna at ipsum egestas pellentesque. Aenean tempus sodales ornare.',
-      people: ['PL']
+      people: ['PL'],
+      date: moment().subtract(25, 'day')
     }
   ]
 }
@@ -61,7 +68,8 @@ const newChatItem = title => ({
   title,
   subject: '',
   body: '',
-  people: []
+  people: [],
+  date: moment()
 })
 
 export const Handlers = {

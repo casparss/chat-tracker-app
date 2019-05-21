@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
@@ -7,7 +7,8 @@ import Chip from '@material-ui/core/Chip'
 import moment from 'moment'
 import './Style.scss'
 
-export default ({ chatList = [] }) => {
+export default ({ chatList = [], fetchChatsAttempt }) => {
+  useEffect(fetchChatsAttempt, [])
   return (
     <div className="ChatsTimeline">
       <List>
@@ -29,10 +30,10 @@ const TimelineItem = ({
     body,
     people,
     tags,
-    date
+    createdAt
   }) =>
     <ListItem className="TimelineItem" alignItems="flex-start">
-      <DateItem date={date} />
+      <DateItem date={createdAt} />
       <div className="TimelineItem-body">
         <ListItemText
           primary={title}

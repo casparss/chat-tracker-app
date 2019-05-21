@@ -1,80 +1,57 @@
-/*import { select, call, put, takeLatest } from 'redux-saga/effects'
-import { Types as UserTypes } from '../User'
+import { select, call, put, takeLatest } from 'redux-saga/effects'
 import { Types, Creators } from './Types'
-import Api from '../../services/Api'
-import { pick } from 'lodash'
-import { selectUIInstance } from './Reducer'
+import Api from '../../api'
 const {
-  getLengthsAttempt,
-  getLengthsSuccess,
-  getLengthsFailed,
-  getGamesSuccess,
-  getGamesFailed
+  createNewChatAttempt,
+  createNewChatSuccess,
+  createNewChatFailed,
+  fetchChatsAttempt,
+  fetchChatsSuccess,
+  fetchChatsFailed,
+  resetUI
 } = Creators
 
-export function * getLengths ({ _id }) {
+function * fetchChats () {
   try {
-    let request = yield call(Api.getGames, {
-      type: 'lengths',
-      by: 'User',
-      _id
-    })
+    let request = yield call(Api.chats.fetch)
 
     if(request.status === 'success') {
-      yield put(getLengthsSuccess(
+      yield put(fetchChatsSuccess(
+        request.data
+      ))
+    } else {
+      yield put(fetchChatsFailed({
+        message: request.message
+      }))
+    }
+  } catch(err) {
+    yield put(fetchChatsFailed({
+      err
+    }))
+  }
+}
+
+function * createNewChat ({ _id }) {
+  try {
+    let request = yield call(Api.chat.create)
+
+    if(request.status === 'success') {
+      yield put(createNewChatSuccess(
         request.data.lengths
       ))
     } else {
-      yield put(getLengthsFailed({
-        message: request.message || request.description
+      yield put(createNewChatFailed({
+        message: request.message
       }))
     }
   } catch(err) {
-    yield put(getLengthsFailed({
+    yield put(createNewChatFailed({
       err
     }))
   }
-}
-
-export function * getGames ({ payload }) {
-  try {
-    const instance = yield select(({ games }) => selectUIInstance(games, payload))
-    let request = yield call(Api.getGames, {
-      type: 'filter',
-      status: instance.statusFilter,
-      ...payload
-    })
-
-    if(request.status === 'success') {
-      yield put(getGamesSuccess({
-        data: pick(request.data, ['games', 'lengths']),
-        query: payload
-      }))
-    } else {
-      yield put(getGamesFailed({
-        message: request.message || request.description
-      }))
-    }
-  } catch(err) {
-    yield put(getGamesFailed({
-      err
-    }))
-  }
-}
-
-export function * setStatusFilter(action) {
-  yield call(getGames, {
-    payload: pick(action, ['_id', 'by'])
-  })
-}
-
-export function * onLoginSuccess ({ user }) {
-  yield put(getLengthsAttempt(user._id))
 }
 
 export function * saga () {
-  yield takeLatest(Types.GET_LENGTHS_ATTEMPT, getLengths)
-  yield takeLatest(Types.GET_GAMES_ATTEMPT, getGames)
-  yield takeLatest(Types.SET_STATUS_FILTER, setStatusFilter)
-  yield takeLatest(UserTypes.LOGIN_SUCCESS, onLoginSuccess)
-}*/
+  yield takeLatest(Types.FETCH_CHATS_ATTEMPT, fetchChats)
+  yield takeLatest(Types.CREATE_NEW_CHAT_ATTEMPT, createNewChat)
+}

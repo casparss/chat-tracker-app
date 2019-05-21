@@ -1,6 +1,7 @@
 import React from 'react'
 import AppBar from '../AppBar'
 import ChatsTimeline from '../ChatsTimeline'
+import Login from '../Login'
 import Nav from '../Nav'
 import './Style.scss'
 

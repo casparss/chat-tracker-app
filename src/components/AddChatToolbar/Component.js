@@ -27,7 +27,7 @@ export default class AddChatToolbar extends Component {
         </div>
         <FabButton
           disabled={!this.props.isFetching && this.state.chatTitle === ""}
-          onClick={!this.props.isFetching && this.createNewChat}
+          onClick={!this.props.isFetching ? this.createNewChat : undefined}
         />
       </Toolbar>
     )

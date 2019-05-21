@@ -20,17 +20,11 @@ export default ({
   createNewChatSuccess,
   resetUI
 }) => {
-  const onClickStub = () => {
-    onClick();
-    setTimeout(() => createNewChatSuccess(), 2000)
-    setTimeout(() => resetUI(), 3500)
-  }
-
   return (
     <div className="FabButton">
       <Fab
         data-loading-state={buttonState}
-        onClick={onClickStub}
+        onClick={onClick}
         disabled={disabled}
         className="FabButton-addButton"
 

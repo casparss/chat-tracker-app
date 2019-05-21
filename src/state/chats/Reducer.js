@@ -36,18 +36,17 @@ export const Handlers = {
     isFetching: false,
     isFetchSuccess: true
   }),
-  [Types.CREATE_NEW_CHAT_ATTEMPT]: (state, { title }) => ({
+  [Types.CREATE_NEW_CHAT_ATTEMPT]: (state) => ({
     ...state,
-    chatList: [newChatItem(title), ...state.chatList],
     isFetching: true
   }),
   [Types.CREATE_NEW_CHAT_FAILED]: (state, payload) => ({
     ...state,
     isFetching: false
   }),
-  [Types.CREATE_NEW_CHAT_SUCCESS]: (state, chat) => ({
+  [Types.CREATE_NEW_CHAT_SUCCESS]: (state, { newChat }) => ({
     ...state,
-    chatList: [chat, ...state.chatList],
+    chatList: [newChat, ...state.chatList],
     isFetching: false,
     isFetchSuccess: true
   }),

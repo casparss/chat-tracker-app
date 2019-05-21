@@ -1,6 +1,7 @@
 import { select, call, put, takeLatest } from 'redux-saga/effects'
 import { Types, Creators } from './Types'
-import Api from '../../api'
+import ApiClient from '../../api/ApiClient'
+
 const {
   createNewChatAttempt,
   createNewChatSuccess,
@@ -13,7 +14,7 @@ const {
 
 function * fetchChats () {
   try {
-    let request = yield call(Api.chats.fetch)
+    let request = yield call(() => ApiClient.fetch('chats/'))
 
     if(request.status === 'success') {
       yield put(fetchChatsSuccess(
@@ -31,13 +32,13 @@ function * fetchChats () {
   }
 }
 
-function * createNewChat ({ _id }) {
+function * createNewChat (data) {
   try {
-    let request = yield call(Api.chat.create)
+    let request = yield call(() => ApiClient.post('chat/', data))
 
     if(request.status === 'success') {
       yield put(createNewChatSuccess(
-        request.data.lengths
+        request.data
       ))
     } else {
       yield put(createNewChatFailed({

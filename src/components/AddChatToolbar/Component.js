@@ -34,7 +34,9 @@ export default class AddChatToolbar extends Component {
   }
 
   createNewChat = () => {
-    this.props.createNewChatAttempt(this.state.chatTitle)
+    this.props.createNewChatAttempt({
+      title: this.state.chatTitle
+    })
     this.clearInput()
   }
 

@@ -6,7 +6,7 @@ const defaultHeaders = {
   'Content-Type': 'application/json'
 }
 
-const baseUrl = 'http://104.248.170.31:8080'
+const baseUrl = 'http://104.248.170.31:8080/api'
 
 export default class ApiClient {
   static async fetch(url, opts = {}) {

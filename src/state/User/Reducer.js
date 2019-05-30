@@ -3,7 +3,7 @@ import { Types } from './Types'
 import moment from 'moment'
 
 export const initialState = {
-  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2UyZjhkNDUyMGQwYzAzYjVkY2ZkN2IiLCJpYXQiOjE1NTg0NDg0NzB9._UHyph-FYq-VFNveaSrfvfIJ_BaWCFiOYbC8muua6To'
+  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Y2YwMzZjOGUwYjBkOTAwMTBmZjc0YmIiLCJpYXQiOjE1NTkyNDY1MzZ9.VP5XIG1yRz5W-pf3bQ8fvsYpKVp3vmRGezQNfKzifsY'
 }
 
 export const Handlers = {

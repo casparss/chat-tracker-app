@@ -7,8 +7,7 @@ import Chip from '@material-ui/core/Chip'
 import moment from 'moment'
 import './Style.scss'
 
-export default ({ chatList = [], fetchChatsAttempt }) => {
-  useEffect(fetchChatsAttempt, [])
+export default ({ chatList = [] }) => {
   return (
     <div className="ChatsTimeline">
       <List>

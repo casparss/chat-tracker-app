@@ -1,5 +1,5 @@
 import React from 'react'
-import Main from './components/Main'//API
+import Initialiser from './components/Initialiser'//API
 import { Provider } from 'react-redux'
 import { store } from './state'
 import {
@@ -19,5 +19,5 @@ StatusBar.setBackgroundColor({
 
 export default () =>
   <Provider store={store}>
-    <Main />
+    <Initialiser />
   </Provider>

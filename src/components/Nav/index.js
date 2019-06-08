@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -27,16 +28,19 @@ class SimpleBottomNavigation extends React.Component {
     const { value } = this.state;
 
     return (
-      <BottomNavigation
-        value={value}
-        onChange={this.handleChange}
-        showLabels
-        className={classes.root}
-      >
-        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
-      </BottomNavigation>
+        <BottomNavigation
+          value={value}
+          onChange={this.handleChange}
+          showLabels
+          className={classes.root}
+        >
+          <Link to="/login">
+            <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+          </Link>
+          <Link to="/chats">
+            <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+          </Link>
+        </BottomNavigation>
     );
   }
 }

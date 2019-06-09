@@ -22,6 +22,10 @@ class LoginTab extends React.Component {
       })
     }
 
+    componentDidMount() {
+      this.props.hideLoadingSpinner()
+    }
+
     render() {
         const { classes } = this.props;
         return (
@@ -29,7 +33,7 @@ class LoginTab extends React.Component {
             e.preventDefault()
             this.props.loginAttempt(this.state)
           }}>
-            <Paper eclassName={classes.padding}>
+            <Paper className={classes.padding}>
                 <div className={classes.margin}>
                     <Grid container spacing={8} alignItems="flex-end">
                         <Grid item>

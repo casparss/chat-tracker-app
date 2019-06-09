@@ -14,6 +14,9 @@ export const Handlers = {
     ...state,
     ...user,
     isloggedIn: true
+  }),
+  [Types.LOGOUT]: () => ({
+    isloggedIn: false
   })
 }
 

@@ -9,14 +9,14 @@ export const initialState = {
 }
 
 export const Handlers = {
-  [Types.SHOW_LOADING_MODAL]: (state, { message }) => ({
+  [Types.SHOW_LOADING_SPINNER]: (state, { message }) => ({
     ...state,
     loading: {
       isLoading: true,
-      message: !message || message
+      message
     }
   }),
-  [Types.HIDE_LOADING_MODAL]: state => ({
+  [Types.HIDE_LOADING_SPINNER]: state => ({
     ...state,
     loading: {
       isLoading: false,

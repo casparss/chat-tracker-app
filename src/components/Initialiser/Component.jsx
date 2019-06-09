@@ -5,9 +5,11 @@ import Loader from '../Loader'
 
 export default class Initialiser extends Component {
   render() {
+    const { isloggedIn, isLoading } = this.props
     return (
       <div>
-        {this.props.isloggedIn ? <Main /> : <Login />}
+        {isLoading && <Loader />}
+        {isloggedIn ? <Main /> : <Login />}
       </div>
     )
   }

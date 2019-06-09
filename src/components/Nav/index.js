@@ -1,12 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import PropTypes from 'prop-types';
+import { NavLink } from "react-router-dom";
+import { withRouter } from 'react-router'
 import { withStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 const styles = {
   root: {
@@ -14,39 +13,27 @@ const styles = {
   },
 };
 
-class SimpleBottomNavigation extends React.Component {
-  state = {
-    value: 0,
-  };
+const Nav = ({ classes, location }) =>
+  <BottomNavigation
+    showLabels
+    className={classes.root}
+    value={location.pathname}
+  >
+    <BottomNavigationAction
+      label="Profile"
+      icon={<RestoreIcon />}
+      component={NavLink}
+      value="/profile"
+      to="/profile"
+    />
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
+    <BottomNavigationAction
+      label="Chats"
+      icon={<FavoriteIcon />}
+      component={NavLink}
+      value="/chats"
+      to="/chats"
+    />
+  </BottomNavigation>
 
-  render() {
-    const { classes } = this.props;
-    const { value } = this.state;
-
-    return (
-        <BottomNavigation
-          value={value}
-          onChange={this.handleChange}
-          showLabels
-          className={classes.root}
-        >
-          <Link to="/login">
-            <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-          </Link>
-          <Link to="/chats">
-            <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-          </Link>
-        </BottomNavigation>
-    );
-  }
-}
-
-SimpleBottomNavigation.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SimpleBottomNavigation);
+export default withRouter(withStyles(styles)(Nav));

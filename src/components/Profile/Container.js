@@ -1,13 +1,10 @@
 import { connect } from 'react-redux'
 import { Creators as UserCreators } from '../../state/User'
 import Component from './Component'
-import { Creators as CoreCreators } from '../../state/Core'
 
-const mapDispatchToProps = { ...UserCreators, ...CoreCreators }
-
-const mapStateToProps = state => state
+const mapDispatchToProps = UserCreators
 
 export default connect(
-  mapStateToProps,
+  undefined,
   mapDispatchToProps
 )(Component)

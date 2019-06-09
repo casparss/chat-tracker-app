@@ -4,7 +4,12 @@ import Component from './Component'
 
 const mapDispatchToProps = Creators
 
-const mapStateToProps = state => state
+const getLoggedIn = state =>
+  state.user.isloggedIn
+
+const mapStateToProps = state => ({
+  isloggedIn: getLoggedIn(state)
+})
 
 export default connect(
   mapStateToProps,

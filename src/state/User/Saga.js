@@ -9,7 +9,8 @@ const {
   loginFailed
 } = Creators
 
-const loginRequest = body => ApiClient.fetch(`/user`, { body })
+const loginRequest = ({ email, password }) =>
+  ApiClient.fetch(`/user?email=${email}&password=${password}`)
 
 function * login ({ loginDetails }) {
   try {
@@ -18,7 +19,7 @@ function * login ({ loginDetails }) {
     if(request.status === 'success') {
       yield put(loginSuccess(request.data))
     } else {
-      yield put(loginFailed(request.data.message))
+      yield put(loginFailed(request.message))
     }
   }
   catch(e) {

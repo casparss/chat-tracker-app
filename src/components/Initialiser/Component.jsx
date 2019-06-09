@@ -4,10 +4,10 @@ import Login from '../Login'
 import Loader from '../Loader'
 
 export default class Initialiser extends Component {
-  render(isloggedIn = false) {
+  render() {
     return (
       <div>
-        {isloggedIn ? <Main /> : <Login />}
+        {this.props.isloggedIn ? <Main /> : <Login />}
       </div>
     )
   }

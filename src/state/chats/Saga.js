@@ -1,6 +1,6 @@
 import { select, call, put, takeLatest } from 'redux-saga/effects'
 import { Types, Creators } from './Types'
-import { Types as CoreTypes } from '../Core/Types'
+import { Types as UserTypes } from '../User/Types'
 import ApiClient from '../../api/ApiClient'
 import errorLogger from '../../utils/ErrorLogger'
 
@@ -14,7 +14,7 @@ const {
   resetUI
 } = Creators
 
-function * appStarted() {
+function * loginSuccess() {
   yield put(fetchChatsAttempt())
 }
 
@@ -65,5 +65,5 @@ function * createNewChat (data) {
 export function * saga () {
   yield takeLatest(Types.FETCH_CHATS_ATTEMPT, fetchChats)
   yield takeLatest(Types.CREATE_NEW_CHAT_ATTEMPT, createNewChat)
-  yield takeLatest(CoreTypes.APP_STARTED, appStarted)
+  yield takeLatest(UserTypes.LOGIN_SUCCESS, loginSuccess)
 }

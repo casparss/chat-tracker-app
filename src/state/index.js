@@ -13,7 +13,7 @@ const reducers = {
 
 const sagas = [
   chatSaga,
-  //userSaga
+  userSaga
 ]
 
 export const store = configureStore(reducers, sagas)

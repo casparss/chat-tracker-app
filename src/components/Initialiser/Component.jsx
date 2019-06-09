@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import Main from '../Main'
+import Login from '../Login'
+import Loader from '../Loader'
 
 export default class Initialiser extends Component {
-  render() {
+  render(isloggedIn = false) {
     return (
       <div>
-        <Main />
+        {isloggedIn ? <Main /> : <Login />}
       </div>
     )
   }

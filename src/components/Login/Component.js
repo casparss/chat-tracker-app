@@ -11,17 +11,41 @@ const styles = theme => ({
 });
 
 class LoginTab extends React.Component {
+    state = {
+      email: '',
+      password: ''
+    }
+
+    update(key, e) {
+      this.setState({
+        [key]: e.currentTarget.value
+      })
+    }
+
     render() {
         const { classes } = this.props;
         return (
-            <Paper className={classes.padding}>
+          <form onSubmit={(e) => {
+            e.preventDefault()
+            this.props.loginAttempt(this.state)
+          }}>
+            <Paper eclassName={classes.padding}>
                 <div className={classes.margin}>
                     <Grid container spacing={8} alignItems="flex-end">
                         <Grid item>
                             <Face />
                         </Grid>
                         <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="username" label="Username" type="email" fullWidth autoFocus required />
+                            <TextField
+                              onChange={e => this.update('email', e)}
+                              value={this.state.email}
+                              id="username"
+                              label="Username"
+                              type="email"
+                              fullWidth
+                              autoFocus
+                              required
+                            />
                         </Grid>
                     </Grid>
                     <Grid container spacing={8} alignItems="flex-end">
@@ -29,7 +53,13 @@ class LoginTab extends React.Component {
                             <Fingerprint />
                         </Grid>
                         <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="username" label="Password" type="password" fullWidth required />
+                            <TextField
+                              onChange={e => this.update('password', e)}
+                              label="Password"
+                              type="password"
+                              fullWidth
+                              required
+                            />
                         </Grid>
                     </Grid>
                     <Grid container alignItems="center" justify="space-between">
@@ -45,10 +75,11 @@ class LoginTab extends React.Component {
                         </Grid>
                     </Grid>
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
-                        <Button variant="outlined" color="primary" style={{ textTransform: "none" }}>Login</Button>
+                        <Button type='submit' variant="outlined" color="primary" style={{ textTransform: "none" }}>Login</Button>
                     </Grid>
                 </div>
             </Paper>
+          </form>
         );
     }
 }

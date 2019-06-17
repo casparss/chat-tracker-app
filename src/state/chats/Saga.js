@@ -23,19 +23,15 @@ function * fetchChats () {
     let request = yield call(() => ApiClient.fetch('chats/'))
 
     if(request.status === 'success') {
-      yield put(fetchChatsSuccess(
-        request.data
-      ))
-    } else {
-      yield put(fetchChatsFailed({
-        message: request.message
-      }))
+      yield put(fetchChatsSuccess(request.data))
+    }
+    else {
+      yield put(fetchChatsFailed({ message: request.message }))
       yield errorLogger(request)
     }
-  } catch(err) {
-    yield put(fetchChatsFailed({
-      err
-    }))
+  }
+  catch(err) {
+    yield put(fetchChatsFailed({ err }))
     yield errorLogger(err)
   }
 }
@@ -45,19 +41,15 @@ function * createNewChat (data) {
     let request = yield call(() => ApiClient.post('chat/', data))
 
     if(request.status === 'success') {
-      yield put(createNewChatSuccess(
-        request.data
-      ))
-    } else {
-      yield put(createNewChatFailed({
-        message: request.message
-      }))
+      yield put(createNewChatSuccess(request.data))
+    }
+    else {
+      yield put(createNewChatFailed({ message: request.message }))
       yield errorLogger(request)
     }
-  } catch(err) {
-    yield put(createNewChatFailed({
-      err
-    }))
+  }
+  catch(err) {
+    yield put(createNewChatFailed({ err }))
     yield errorLogger(err)
   }
 }

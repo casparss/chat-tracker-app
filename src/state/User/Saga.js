@@ -1,30 +1,29 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
 import { Types, Creators } from './Types'
-import { Creators as CoreCreators } from '../Core'
+import { Creators as CoreCreators, Types as CoreTypes } from '../Core'
 import ApiClient from '../../api/ApiClient'
 import errorLogger from '../../utils/ErrorLogger'
-
-const {
-  loginSuccess,
-  loginFailed,
-  persistentLogin
-} = Creators
+import toast from '../../utils/Toast'
+import * as storage from '../../utils/Storage'
 
 function * onAppStarted () {
-  yield put(persistentLogin())
+  yield put(Creators.persistentLogin())
 }
 
 const loginRequest = ({ email, password }) =>
-  ApiClient.fetch(`/user?email=${email}&password=${password}`)
+  ApiClient.fetch(`user?email=${email}&password=${password}`)
 
 function * login ({ loginDetails }) {
+  const { loginSuccess, loginFailed } = Creators
+
   try {
     yield put(CoreCreators.showLoadingSpinner())
     const request = yield call(loginRequest, loginDetails)
 
     if(request.status === 'success') {
       yield put(loginSuccess(request.data))
-    } else {
+    }
+    else {
       yield put(loginFailed(request.message))
     }
   }
@@ -34,12 +33,18 @@ function * login ({ loginDetails }) {
   }
 }
 
-const persistentLogin = () => {
+function * loginSuccess ({ user }) {
+  yield call(storage.set, 'token', user.token)
+}
 
+function * loginFailed ({ errMessage }) {
+  yield put(CoreCreators.hideLoadingSpinner())
+  yield call(toast, errMessage)
 }
 
 export function * saga () {
   yield takeLatest(Types.LOGIN_ATTEMPT, login)
-  yield takeLatest(Types.PERSISTENT_LOGIN, persistentLogin)
-  yield takeLatest(Types.APP_STARTED, onAppStarted)
+  yield takeLatest(Types.LOGIN_SUCCESS, loginSuccess)
+  yield takeLatest(Types.LOGIN_FAILED, loginFailed)
+  yield takeLatest(CoreTypes.APP_STARTED, onAppStarted)
 }

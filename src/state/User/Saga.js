@@ -13,6 +13,13 @@ function * onAppStarted () {
 const loginRequest = ({ email, password }) =>
   ApiClient.fetch(`user?email=${email}&password=${password}`)
 
+const persistentLoginRequest = token =>
+  ApiClient.fetch(`user`, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+
 function * login ({ loginDetails }) {
   const { loginSuccess, loginFailed } = Creators
 
@@ -33,6 +40,26 @@ function * login ({ loginDetails }) {
   }
 }
 
+function * persistentLogin () {
+  const { loginSuccess, loginFailed } = Creators
+  try {
+    yield put(CoreCreators.showLoadingSpinner())
+    const token = (yield call(storage.get, 'token') || {}).value
+
+    if(token) {
+      const request = yield call(persistentLoginRequest, token)
+
+      if(request.status === 'success') {
+        yield put(loginSuccess(request.data))
+      }
+    }
+  }
+  catch(e) {
+    yield put(loginFailed(e.message))
+    yield call(errorLogger, e)
+  }
+}
+
 function * loginSuccess ({ user }) {
   yield call(storage.set, 'token', user.token)
 }
@@ -44,6 +71,7 @@ function * loginFailed ({ errMessage }) {
 
 export function * saga () {
   yield takeLatest(Types.LOGIN_ATTEMPT, login)
+  yield takeLatest(Types.PERSISTENT_LOGIN, persistentLogin)
   yield takeLatest(Types.LOGIN_SUCCESS, loginSuccess)
   yield takeLatest(Types.LOGIN_FAILED, loginFailed)
   yield takeLatest(CoreTypes.APP_STARTED, onAppStarted)

@@ -6,6 +6,9 @@ import {
   Plugins,
   StatusBarStyle,
 } from '@capacitor/core'
+import { IonApp } from '@ionic/react';
+import '@ionic/core/css/core.css';
+import '@ionic/core/css/ionic.bundle.css';
 
 const { StatusBar } = Plugins;
 
@@ -19,5 +22,7 @@ StatusBar.setBackgroundColor({
 
 export default () =>
   <Provider store={store}>
-    <Initialiser />
+    <IonApp>
+      <Initialiser />
+    </IonApp>
   </Provider>

@@ -20,19 +20,19 @@ const Nav = ({ classes, location }) =>
     value={location.pathname}
   >
     <BottomNavigationAction
-      label="Profile"
-      icon={<RestoreIcon />}
-      component={NavLink}
-      value="/profile"
-      to="/profile"
-    />
-
-    <BottomNavigationAction
       label="Chats"
       icon={<FavoriteIcon />}
       component={NavLink}
       value="/chats"
       to="/chats"
+    />
+
+    <BottomNavigationAction
+      label="Profile"
+      icon={<RestoreIcon />}
+      component={NavLink}
+      value="/profile"
+      to="/profile"
     />
   </BottomNavigation>
 

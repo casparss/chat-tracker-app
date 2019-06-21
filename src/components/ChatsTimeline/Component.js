@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Fragment } from 'react'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
@@ -7,13 +7,35 @@ import Chip from '@material-ui/core/Chip'
 import moment from 'moment'
 import './Style.scss'
 
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonButton
+} from '@ionic/react';
+
 export default ({ chatList = [] }) => {
   return (
-    <div className="ChatsTimeline">
-      <List>
-        {chatList.map((props, i) => <TimelineItem key={i} {...props} />)}
-      </List>
-    </div>
+    <Fragment>
+      <IonHeader>
+        <IonToolbar color="primary">
+          <IonTitle>News App v1.0</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent>
+        <div className="ChatsTimeline">
+          <List>
+            {chatList.map((props, i) => <TimelineItem key={i} {...props} />)}
+          </List>
+        </div>
+      </IonContent>
+    </Fragment>
   )
 }
 

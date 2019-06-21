@@ -8,6 +8,7 @@
     "@capacitor/core": "^1.0.0-beta.24",
     "@capacitor/ios": "^1.0.0-beta.24",
     "@ionic/pwa-elements": "^1.3.0",
+    "@ionic/react": "0.0.6-3",
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
     "moment": "^2.24.0",

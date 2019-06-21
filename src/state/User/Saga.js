@@ -45,6 +45,7 @@ function * persistentLogin () {
   try {
     yield put(CoreCreators.showLoadingSpinner())
     const token = (yield call(storage.get, 'token') || {}).value
+    yield put(CoreCreators.hideLoadingSpinner())
 
     if(token) {
       const request = yield call(persistentLoginRequest, token)
@@ -55,6 +56,7 @@ function * persistentLogin () {
     }
   }
   catch(e) {
+    yield put(CoreCreators.hideLoadingSpinner())
     yield put(loginFailed(e.message))
     yield call(errorLogger, e)
   }
@@ -69,10 +71,15 @@ function * loginFailed ({ errMessage }) {
   yield call(toast, errMessage)
 }
 
+function * logout () {
+  yield call(storage.set, 'token', '')
+}
+
 export function * saga () {
   yield takeLatest(Types.LOGIN_ATTEMPT, login)
   yield takeLatest(Types.PERSISTENT_LOGIN, persistentLogin)
   yield takeLatest(Types.LOGIN_SUCCESS, loginSuccess)
   yield takeLatest(Types.LOGIN_FAILED, loginFailed)
+  yield takeLatest(Types.LOGOUT, logout)
   yield takeLatest(CoreTypes.APP_STARTED, onAppStarted)
 }

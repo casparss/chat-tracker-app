@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import AppBar from '../AppBar'
-import { Route, BrowserRouter as Router } from "react-router-dom"
+import { Route, Redirect, BrowserRouter as Router } from "react-router-dom"
 import ChatsTimeline from '../ChatsTimeline'
 import Profile from '../Profile'
 import Nav from '../Nav'
@@ -12,8 +12,10 @@ export default ({ hideLoadingSpinner }) => {
   return (
     <div className="MainContainer">
       <Router>
-        <AppBar />
         <main>
+          <Route exact path="/" render={() => (
+            <Redirect to="/chats" />
+          )}/>
           <Route path="/chats" component={ChatsTimeline} />
           <Route path="/profile" component={Profile} />
         </main>

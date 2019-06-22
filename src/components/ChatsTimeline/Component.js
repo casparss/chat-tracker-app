@@ -25,7 +25,7 @@ export default ({ chatList = [] }) => {
     <Fragment>
       <IonHeader>
         <IonToolbar color="primary">
-          <IonTitle>News App v1.0</IonTitle>
+          <IonTitle>Chasts</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>

@@ -1,26 +1,47 @@
 import React, { useEffect } from 'react'
-import AppBar from '../AppBar'
-import { Route, Redirect, BrowserRouter as Router } from "react-router-dom"
+import { Route, BrowserRouter as Router, Redirect } from "react-router-dom"
 import ChatsTimeline from '../ChatsTimeline'
 import Profile from '../Profile'
-import Nav from '../Nav'
-import './Style.scss'
+//import './Style.scss'
+
+import {
+  IonTabs,
+  IonTab,
+  IonTabBar,
+  IonTabButton,
+  IonLabel,
+  IonIcon,
+  IonBadge,
+  IonRouterOutlet,
+  IonPage
+} from '@ionic/react';
 
 export default ({ hideLoadingSpinner }) => {
   useEffect(() => { hideLoadingSpinner() }, [])
-
   return (
-    <div className="MainContainer">
-      <Router>
-        <main>
-          <Route exact path="/" render={() => (
-            <Redirect to="/chats" />
-          )}/>
-          <Route path="/chats" component={ChatsTimeline} />
-          <Route path="/profile" component={Profile} />
-        </main>
-        <Nav />
-      </Router>
-    </div>
+    <Router>
+      <Route exact path="/" render={() => <Redirect to="/chats"/>}/>
+      <IonPage>
+        <IonTabs>
+          <IonRouterOutlet>
+            <Route path="/chats" component={ChatsTimeline} exact={true} />
+            <Route path="/profile" component={Profile} exact={true} />
+          </IonRouterOutlet>
+
+          <IonTabBar slot="bottom">
+            <IonTabButton tab="chats" href="/chats">
+              <IonLabel>Chats</IonLabel>
+              <IonIcon name="home"></IonIcon>
+              <IonBadge>6</IonBadge>
+            </IonTabButton>
+
+            <IonTabButton tab="profile" href="/profile">
+              <IonLabel>Profile</IonLabel>
+              <IonIcon name="settings"></IonIcon>
+            </IonTabButton>
+          </IonTabBar>
+        </IonTabs>
+      </IonPage>
+    </Router>
   )
 }

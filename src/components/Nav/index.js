@@ -1,39 +1,33 @@
 import React from 'react';
-import { NavLink } from "react-router-dom";
 import { withRouter } from 'react-router'
-import { withStyles } from '@material-ui/core/styles';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 
-const styles = {
-  root: {
-    width: '100%',
-  },
-};
+import {
+  IonTabs,
+  IonTab,
+  IonTabBar,
+  IonTabButton,
+  IonLabel,
+  IonIcon,
+  IonBadge
+} from '@ionic/react';
 
 const Nav = ({ classes, location }) =>
-  <BottomNavigation
-    showLabels
-    className={classes.root}
-    value={location.pathname}
-  >
-    <BottomNavigationAction
-      label="Chats"
-      icon={<FavoriteIcon />}
-      component={NavLink}
-      value="/chats"
-      to="/chats"
-    />
+  <IonTabs>
+    <IonTab tab="home">Home Content</IonTab>
+    <IonTab tab="settings">Settings Content</IonTab>
 
-    <BottomNavigationAction
-      label="Profile"
-      icon={<RestoreIcon />}
-      component={NavLink}
-      value="/profile"
-      to="/profile"
-    />
-  </BottomNavigation>
+    <IonTabBar slot="bottom">
+      <IonTabButton tab="home">
+        <IonLabel>Home</IonLabel>
+        <IonIcon name="home"></IonIcon>
+        <IonBadge>6</IonBadge>
+      </IonTabButton>
 
-export default withRouter(withStyles(styles)(Nav));
+      <IonTabButton tab="settings">
+        <IonLabel>Settings</IonLabel>
+        <IonIcon name="settings"></IonIcon>
+      </IonTabButton>
+    </IonTabBar>
+  </IonTabs>
+
+export default Nav;

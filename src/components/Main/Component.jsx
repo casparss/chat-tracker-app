@@ -24,8 +24,8 @@ export default ({ hideLoadingSpinner }) => {
       <IonPage>
         <IonTabs>
           <IonRouterOutlet>
-            <Route path="/chats" component={ChatsTimeline} exact={true} />
-            <Route path="/profile" component={Profile} exact={true} />
+            <Route path="/:tab(chats)" component={ChatsTimeline} exact={true} />
+            <Route path="/:tab(profile)" component={Profile} exact={true} />
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom">

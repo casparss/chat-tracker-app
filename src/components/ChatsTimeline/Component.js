@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react'
+import React, { useEffect, Fragment, useState } from 'react'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
@@ -6,30 +6,37 @@ import Avatar from '@material-ui/core/Avatar'
 import Chip from '@material-ui/core/Chip'
 import moment from 'moment'
 import './Style.scss'
+import {ModalExample} from '../Modal'
 
 import {
   IonContent,
+  IonSearchbar,
   IonHeader,
-  IonTitle,
-  IonToolbar,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonButton
+  IonToolbar
 } from '@ionic/react';
 
 export default ({ chatList = [] }) => {
+  const [isModalOpen, setModalOpen] = useState(false)
   return (
     <Fragment>
       <IonHeader>
         <IonToolbar color="primary">
-          <IonTitle>Chasts</IonTitle>
+          <IonSearchbar
+            onIonFocus={(e) => {
+              console.log(e)
+              setModalOpen(true)
+            }}
+            placeholder="Log a conversation…"
+          ></IonSearchbar>
         </IonToolbar>
       </IonHeader>
+
       <IonContent>
         <div className="ChatsTimeline">
+          <ModalExample
+            isOpen={isModalOpen}
+            onDidDismiss={() => { setModalOpen(false) }}
+          />
           <List>
             {chatList.map((props, i) => <TimelineItem key={i} {...props} />)}
           </List>

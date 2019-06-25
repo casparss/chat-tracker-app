@@ -21,6 +21,14 @@ const newChatItem = title => ({
   date: moment()
 })
 
+const addStubData = (chats) => {
+  return chats.map((item) => ({
+    ...item,
+    people: ['CSS', 'JS', 'BB'],
+    tags: ['chat', 'work', 'funny']
+  }))
+}
+
 export const Handlers = {
   [Types.FETCH_CHATS_ATTEMPT]: state => ({
     ...state,
@@ -32,7 +40,7 @@ export const Handlers = {
   }),
   [Types.FETCH_CHATS_SUCCESS]: (state, chats) => ({
     ...state,
-    chatList: [...chats.chats, ...state.chatList],
+    chatList: [...addStubData(chats.chats), state.chatList],
     isFetching: false,
     isFetchSuccess: true
   }),

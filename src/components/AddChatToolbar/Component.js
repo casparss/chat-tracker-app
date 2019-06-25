@@ -1,35 +1,54 @@
 import React, { Component } from 'react'
-import InputBase from '@material-ui/core/InputBase'
-import ChatIcon from '@material-ui/icons/ChatBubble'
-import Toolbar from '@material-ui/core/Toolbar'
-import FabButton from '../FabButton'
-import { Plugins, HapticsImpactStyle } from '@capacitor/core'
 import './Style.scss'
-const { Haptics } = Plugins;
+import {
+  IonToolbar,
+  IonIcon,
+  IonButton,
+  IonSearchbar,
+  IonGrid,
+  IonRow,
+  IonCol
+} from '@ionic/react';
 
 export default class AddChatToolbar extends Component {
   state = {
     chatTitle: ''
   }
 
+  constructor() {
+    super()
+    this.searchbar = React.createRef()
+  }
+
+  setFocus() {
+    this.searchbar.current.setFocus()
+  }
+
   render() {
     return (
-      <Toolbar className="AddChatToolbar">
-        <div className="AddChatToolbar-search">
-          <div className="AddChatToolbar-searchIcon">
-            <ChatIcon />
-          </div>
-          <InputBase
-            className="AddChatToolbar-input"
-            onChange={this.updateInput}
-            value={this.state.chatTitle}
-            placeholder="Log a conversation…" />
-        </div>
-        <FabButton
-          disabled={!this.props.isFetching && this.state.chatTitle === ""}
-          onClick={!this.props.isFetching ? this.createNewChat : undefined}
-        />
-      </Toolbar>
+      <IonToolbar color="primary">
+        <IonGrid>
+          <IonRow>
+            <IonCol size="9">
+              <IonSearchbar
+                ref={this.searchbar}
+                animated
+                debounce={1}
+                onIonChange={this.updateInput}
+                value={this.state.chatTitle}
+                placeholder="Log a conversation…"
+              ></IonSearchbar>
+            </IonCol>
+            <IonCol size="3">
+              <IonButton
+                disabled={!this.props.isFetching && this.state.chatTitle === ""}
+                onClick={!this.props.isFetching ? this.createNewChat : undefined}
+                shape="round"
+              ><IonIcon slot="icon-only" name="star" /></IonButton>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+      </IonToolbar>
     )
   }
 
@@ -42,7 +61,6 @@ export default class AddChatToolbar extends Component {
 
   updateInput = (e) => {
     this.setState({ chatTitle: e.target.value })
-    Haptics.impact({ style: HapticsImpactStyle.Medium })
   }
 
   clearInput = () => this.setState({ chatTitle: '' })

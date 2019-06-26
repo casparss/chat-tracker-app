@@ -6,7 +6,7 @@ import Avatar from '@material-ui/core/Avatar'
 import Chip from '@material-ui/core/Chip'
 import moment from 'moment'
 import './Style.scss'
-import {ModalExample} from '../Modal'
+import AddChatModal from '../AddChatModal'
 
 import {
   IonContent,
@@ -21,19 +21,20 @@ export default ({ chatList = [] }) => {
     <Fragment>
       <IonHeader>
         <IonToolbar color="primary">
-          <IonSearchbar
-            onIonFocus={(e) => {
-              console.log(e)
-              setModalOpen(true)
-            }}
-            placeholder="Log a conversation…"
-          ></IonSearchbar>
+          <div className="SearchBarWrapper">
+            <IonSearchbar
+              placeholder="Log a conversation…"
+            ></IonSearchbar>
+            <div
+              className="SearchBarWrapper-fauxButton"
+              onClick={() => setModalOpen(true)}></div>
+          </div>
         </IonToolbar>
       </IonHeader>
 
       <IonContent>
         <div className="ChatsTimeline">
-          <ModalExample
+          <AddChatModal
             isOpen={isModalOpen}
             onDidDismiss={() => { setModalOpen(false) }}
           />

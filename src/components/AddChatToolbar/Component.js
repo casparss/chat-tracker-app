@@ -8,7 +8,7 @@ import {
   IonGrid,
   IonRow,
   IonCol
-} from '@ionic/react';
+} from '@ionic/react'
 
 export default class AddChatToolbar extends Component {
   state = {
@@ -17,11 +17,11 @@ export default class AddChatToolbar extends Component {
 
   constructor() {
     super()
-    this.searchbar = React.createRef()
+    this.searchbarWrapper = React.createRef()
   }
 
   setFocus() {
-    this.searchbar.current.setFocus()
+    this.searchbarWrapper.current.setFocus()
   }
 
   render() {
@@ -31,7 +31,6 @@ export default class AddChatToolbar extends Component {
           <IonRow>
             <IonCol size="9">
               <IonSearchbar
-                ref={this.searchbar}
                 animated
                 debounce={1}
                 onIonChange={this.updateInput}

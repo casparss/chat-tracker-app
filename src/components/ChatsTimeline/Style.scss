@@ -5,6 +5,17 @@
   align-items: center;
 }
 
+.SearchBarWrapper {
+  position: relative;
+  &-fauxButton {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+
 .TimelineItem {
   padding: 0!important;
   display: flex;

@@ -15,37 +15,31 @@ import {
   IonToolbar
 } from '@ionic/react';
 
-export default ({ chatList = [] }) => {
-  const [isModalOpen, setModalOpen] = useState(false)
-  return (
-    <Fragment>
-      <IonHeader>
-        <IonToolbar color="primary">
-          <div className="SearchBarWrapper">
-            <IonSearchbar
-              placeholder="Log a conversation…"
-            ></IonSearchbar>
-            <div
-              className="SearchBarWrapper-fauxButton"
-              onClick={() => setModalOpen(true)}></div>
-          </div>
-        </IonToolbar>
-      </IonHeader>
-
-      <IonContent>
-        <div className="ChatsTimeline">
-          <AddChatModal
-            isOpen={isModalOpen}
-            onDidDismiss={() => { setModalOpen(false) }}
-          />
-          <List>
-            {chatList.map((props, i) => <TimelineItem key={i} {...props} />)}
-          </List>
+export default ({ chatList = [], openAddChat }) => (
+  <Fragment>
+    <IonHeader>
+      <IonToolbar color="primary">
+        <div className="SearchBarWrapper">
+          <IonSearchbar
+            placeholder="Log a conversation…"
+          ></IonSearchbar>
+          <div
+            className="SearchBarWrapper-fauxButton"
+            onClick={openAddChat}></div>
         </div>
-      </IonContent>
-    </Fragment>
-  )
-}
+      </IonToolbar>
+    </IonHeader>
+
+    <IonContent>
+      <div className="ChatsTimeline">
+        <AddChatModal />
+        <List>
+          {chatList.map((props, i) => <TimelineItem key={i} {...props} />)}
+        </List>
+      </div>
+    </IonContent>
+  </Fragment>
+)
 
 const DateItem = ({ date }) => (
   <div className="TimelineItem-date">

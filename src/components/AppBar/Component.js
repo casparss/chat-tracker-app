@@ -7,9 +7,9 @@ import './Style.scss'
 class PrimarySearchAppBar extends React.Component {
   render() {
     return (
-        <AppBar className="AppBar">
-          <AddChatToolbar />
-        </AppBar>
+      <AppBar className="AppBar">
+        <AddChatToolbar />
+      </AppBar>
     )
   }
 }

@@ -4,11 +4,13 @@ import { saga as chatSaga } from './Chats/Saga'
 import { reducer as userReducer } from './User'
 import { saga as userSaga } from './User/Saga'
 import { reducer as coreReducer } from './Core/Reducer'
+import { reducer as uiReducer } from './UI/Reducer'
 
 const reducers = {
   chats: chatReducer,
   user: userReducer,
-  core: coreReducer
+  core: coreReducer,
+  ui: uiReducer
 }
 
 const sagas = [

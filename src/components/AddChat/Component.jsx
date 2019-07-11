@@ -13,13 +13,15 @@ export default class AddChat extends Component {
     chatTitle: ''
   }
 
-  constructor() {
-    super()
-    this.searchbarWrapper = React.createRef()
+  componentDidUpdate(prevProps){
+    if(prevProps.isActive === false && this.props.isActive === true) {
+      setTimeout(() => this.setFocus(), 100)
+    }
   }
 
   setFocus() {
-    this.searchbarWrapper.current.setFocus()
+    this.searchbarWrapper && this.searchbarWrapper.blur()
+    this.searchbarWrapper && this.searchbarWrapper.setFocus()
   }
 
   render() {
@@ -28,6 +30,7 @@ export default class AddChat extends Component {
         <IonHeader>
           <IonToolbar color="primary">
             <IonSearchbar
+              ref={(ref) => { this.searchbarWrapper = ref }}
               animated
               debounce={1}
               onIonChange={this.updateInput}

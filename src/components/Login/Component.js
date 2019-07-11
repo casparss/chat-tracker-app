@@ -1,6 +1,5 @@
 import React from 'react';
 import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox } from '@material-ui/core';
-import { Face, Fingerprint } from '@material-ui/icons'
 const styles = theme => ({
     margin: {
         margin: theme.spacing.unit * 2,
@@ -37,7 +36,7 @@ class LoginTab extends React.Component {
                 <div className={classes.margin}>
                     <Grid container spacing={8} alignItems="flex-end">
                         <Grid item>
-                            <Face />
+
                         </Grid>
                         <Grid item md={true} sm={true} xs={true}>
                             <TextField
@@ -54,7 +53,7 @@ class LoginTab extends React.Component {
                     </Grid>
                     <Grid container spacing={8} alignItems="flex-end">
                         <Grid item>
-                            <Fingerprint />
+
                         </Grid>
                         <Grid item md={true} sm={true} xs={true}>
                             <TextField

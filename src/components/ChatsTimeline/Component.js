@@ -12,12 +12,40 @@ import {
   IonContent,
   IonSearchbar,
   IonHeader,
-  IonToolbar
+  IonToolbar,
+  IonButtons,
+  IonButton,
+  IonMenuButton,
+  IonSegment,
+  IonSegmentButton,
+  IonIcon
 } from '@ionic/react';
+
+import { share, logoVimeo, logoGoogleplus, logoTwitter, logoFacebook, options } from 'ionicons/icons';
 
 export default ({ chatList = [], openAddChat }) => (
   <Fragment>
     <IonHeader>
+      <IonToolbar color="primary">
+        <IonButtons slot="start">
+          <IonMenuButton />
+          </IonButtons>
+
+          <IonSegment>
+            <IonSegmentButton value="all">
+              All
+            </IonSegmentButton>
+            <IonSegmentButton value="favorites">
+              Favorites
+            </IonSegmentButton>
+          </IonSegment>
+
+          <IonButtons slot="end">
+            <IonButton>
+          <IonIcon icon={options} slot="icon-only" />
+        </IonButton>
+        </IonButtons>
+      </IonToolbar>
       <IonToolbar color="primary">
         <div className="SearchBarWrapper">
           <IonSearchbar

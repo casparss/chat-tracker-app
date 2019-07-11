@@ -40,7 +40,7 @@ export const Handlers = {
   }),
   [Types.FETCH_CHATS_SUCCESS]: (state, chats) => ({
     ...state,
-    chatList: [...addStubData(chats.chats), state.chatList],
+    chatList: [...addStubData(chats.chats), state.chatList].reverse(),
     isFetching: false,
     isFetchSuccess: true
   }),

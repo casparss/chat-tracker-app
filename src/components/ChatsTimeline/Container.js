@@ -8,8 +8,23 @@ const mapDispatchToProps = { ...ChatCreators, ...UICreators }
 const getChatList = state =>
   state.chats.chatList
 
+const filterFavourites = chats =>
+  chats.filter(({ isFavourite }) => isFavourite)
+
+const filterChats = state => {
+  const chats = getChatList(state)
+
+  switch(state.ui.chatsFilter) {
+    default:
+    case 'all' :
+      return chats
+    case 'favourites' :
+      return filterFavourites(chats)
+  }
+}
+
 const mapStateToProps = state => ({
-  chatList: getChatList(state),
+  chatList: filterChats(state),
   ...state.ui
 })
 

@@ -1,13 +1,4 @@
 import React from 'react';
-import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox } from '@material-ui/core';
-const styles = theme => ({
-    margin: {
-        margin: theme.spacing.unit * 2,
-    },
-    padding: {
-        padding: theme.spacing.unit
-    }
-});
 
 class LoginTab extends React.Component {
     state = {
@@ -26,20 +17,19 @@ class LoginTab extends React.Component {
     }
 
     render() {
-        const { classes } = this.props;
         return (
           <form onSubmit={(e) => {
             e.preventDefault()
             this.props.loginAttempt(this.state)
           }}>
-            <Paper className={classes.padding}>
-                <div className={classes.margin}>
-                    <Grid container spacing={8} alignItems="flex-end">
-                        <Grid item>
+            <div>
+                <div>
+                    <div container spacing={8} alignItems="flex-end">
+                        <div item>
 
-                        </Grid>
-                        <Grid item md={true} sm={true} xs={true}>
-                            <TextField
+                        </div>
+                        <div item md={true} sm={true} xs={true}>
+                            <input
                               onChange={e => this.update('email', e)}
                               value={this.state.email}
                               id="username"
@@ -49,42 +39,36 @@ class LoginTab extends React.Component {
                               autoFocus
                               required
                             />
-                        </Grid>
-                    </Grid>
-                    <Grid container spacing={8} alignItems="flex-end">
-                        <Grid item>
+                        </div>
+                    </div>
+                    <div container spacing={8} alignItems="flex-end">
+                        <div>
 
-                        </Grid>
-                        <Grid item md={true} sm={true} xs={true}>
-                            <TextField
+                        </div>
+                        <div>
+                            <input
                               onChange={e => this.update('password', e)}
                               label="Password"
                               type="password"
                               fullWidth
                               required
                             />
-                        </Grid>
-                    </Grid>
-                    <Grid container alignItems="center" justify="space-between">
-                        <Grid item>
-                            <FormControlLabel control={
-                                <Checkbox
-                                    color="primary"
-                                />
-                            } label="Remember me" />
-                        </Grid>
-                        <Grid item>
-                            <Button disableFocusRipple disableRipple style={{ textTransform: "none" }} variant="text" color="primary">Forgot password ?</Button>
-                        </Grid>
-                    </Grid>
-                    <Grid container justify="center" style={{ marginTop: '10px' }}>
-                        <Button type='submit' variant="outlined" color="primary" style={{ textTransform: "none" }}>Login</Button>
-                    </Grid>
+                        </div>
+                    </div>
+                    <div container alignItems="center" justify="space-between">
+
+                        <div>
+                            <button disableFocusRipple disableRipple style={{ textTransform: "none" }} variant="text" color="primary">Forgot password ?</button>
+                        </div>
+                    </div>
+                    <div container justify="center" style={{ marginTop: '10px' }}>
+                        <button type='submit' variant="outlined" color="primary" style={{ textTransform: "none" }}>Login</button>
+                    </div>
                 </div>
-            </Paper>
+            </div>
           </form>
         );
     }
 }
 
-export default withStyles(styles)(LoginTab);
+export default LoginTab;

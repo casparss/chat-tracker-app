@@ -1,9 +1,6 @@
 import React, { useEffect, Fragment, useState } from 'react'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import Avatar from '@material-ui/core/Avatar'
-import Chip from '@material-ui/core/Chip'
+import Avatar from '../Avatar'
+import Chip from '../Chip'
 import moment from 'moment'
 import './Style.scss'
 import AddChatModal from '../AddChatModal'
@@ -21,49 +18,50 @@ import {
   IonIcon
 } from '@ionic/react';
 
-import { share, logoVimeo, logoGoogleplus, logoTwitter, logoFacebook, options } from 'ionicons/icons';
-
-export default ({ chatList = [], openAddChat }) => (
+export default ({
+  chatList = [],
+  openAddChat,
+  chatsFilter,
+  switchFilter
+}) => (
   <Fragment>
     <IonHeader>
       <IonToolbar color="primary">
         <IonButtons slot="start">
           <IonMenuButton />
-          </IonButtons>
-
-          <IonSegment>
-            <IonSegmentButton value="all">
-              All
-            </IonSegmentButton>
-            <IonSegmentButton value="favorites">
-              Favorites
-            </IonSegmentButton>
-          </IonSegment>
-
-          <IonButtons slot="end">
-            <IonButton>
-          <IonIcon icon={options} slot="icon-only" />
-        </IonButton>
+        </IonButtons>
+        <IonSegment
+          onIonChange={e => switchFilter(e.detail.value)}
+          value={chatsFilter}
+        >
+          <IonSegmentButton value="all">
+            All
+          </IonSegmentButton>
+          <IonSegmentButton value="favourites">
+            Favorites
+          </IonSegmentButton>
+        </IonSegment>
+        <IonButtons slot="end">
+          <IonButton onClick={openAddChat}>
+            <IonIcon size="large" name="paper-plane"></IonIcon>
+          </IonButton>
         </IonButtons>
       </IonToolbar>
-      <IonToolbar color="primary">
+      {/*<IonToolbar color="primary">
         <div className="SearchBarWrapper">
           <IonSearchbar
             placeholder="Log a conversation…"
           ></IonSearchbar>
-          <div
-            className="SearchBarWrapper-fauxButton"
-            onClick={openAddChat}></div>
         </div>
-      </IonToolbar>
+      </IonToolbar>*/}
     </IonHeader>
 
     <IonContent>
       <div className="ChatsTimeline">
         <AddChatModal />
-        <List>
+        <div>
           {chatList.map((props, i) => <TimelineItem key={i} {...props} />)}
-        </List>
+        </div>
       </div>
     </IonContent>
   </Fragment>
@@ -83,17 +81,15 @@ const TimelineItem = ({
     tags,
     createdAt
   }) =>
-    <ListItem className="TimelineItem" alignItems="flex-start">
+    <div className="TimelineItem" alignItems="flex-start">
       <DateItem date={createdAt} />
       <div className="TimelineItem-body">
-        <ListItemText
-          primary={title}
-          secondary={body}
-        />
+        <p>{title}</p>
+        <p>{body}</p>
         {people && <PeopleList people={people} />}
         {tags && <TagsList tags={tags} />}
       </div>
-    </ListItem>
+    </div>
 
 const PeopleList = ({ people }) =>
   <div className="TimelineItem-peopleList">

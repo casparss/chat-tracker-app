@@ -1,5 +1,4 @@
 import React from 'react'
-import CircularProgress from '@material-ui/core/CircularProgress'
 
 const style = {
   zIndex: 90000,
@@ -14,5 +13,5 @@ const style = {
 
 export default () =>
   <div style={style}>
-    <CircularProgress />
+    <p>Loader</p>
   </div>

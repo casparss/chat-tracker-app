@@ -61,7 +61,7 @@ export const Handlers = {
   [Types.RESET_UI]: state => ({
     ...state,
     ...initialFetchState
-  })
+  }),
 }
 
 export const reducer = createReducer(initialState, Handlers)

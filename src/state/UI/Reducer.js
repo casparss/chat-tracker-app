@@ -2,8 +2,14 @@ import { createReducer } from 'reduxsauce'
 import { Types } from './Types'
 import { Types as ChatsTypes } from '../Chats/Types'
 
+const chatFilterOption = {
+  ALL: 'all',
+  FAVOURITES: 'favourites'
+}
+
 export const initialState = {
-  isChatModalOpen: false
+  isChatModalOpen: false,
+  chatsFilter: chatFilterOption.ALL
 }
 
 export const Handlers = {
@@ -18,7 +24,11 @@ export const Handlers = {
   [ChatsTypes.CREATE_NEW_CHAT_SUCCESS]: state => ({
     ...state,
     isChatModalOpen: false
-  })
+  }),
+  [Types.SWITCH_FILTER]: (state, { filter }) => ({
+    ...state,
+    chatsFilter: filter
+  }),
 }
 
 export const reducer = createReducer(initialState, Handlers)

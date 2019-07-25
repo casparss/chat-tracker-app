@@ -31,13 +31,13 @@ export default ({ hideLoadingSpinner }) => {
           <IonTabBar slot="bottom">
             <IonTabButton tab="chats" href="/chats">
               <IonLabel>Chats</IonLabel>
-              <IonIcon name="home"></IonIcon>
+              <IonIcon name="md-home"></IonIcon>
               <IonBadge>6</IonBadge>
             </IonTabButton>
 
             <IonTabButton tab="profile" href="/profile">
               <IonLabel>Profile</IonLabel>
-              <IonIcon name="settings"></IonIcon>
+              <IonIcon name="md-settings"></IonIcon>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
